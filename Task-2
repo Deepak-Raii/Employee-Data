@@ -1,1 +1,45 @@
+import csv
+
+# Read the department data from the CSV file
+departments = {}
+with open('departments.csv', 'r') as file:
+    reader = csv.reader(file)
+    next(reader)  # Skip header row
+    for row in reader:
+        dept_id, dept_name = row
+        departments[dept_id] = dept_name
+
+# Read the employee data from the CSV file
+employees = {}
+with open('employees.csv', 'r') as file:
+    reader = csv.reader(file)
+    next(reader)  # Skip header row
+    for row in reader:
+        emp_id, emp_name, dept_id = row
+        employees[emp_id] = dept_id
+
+# Read the salary data from the CSV file
+salaries = {}
+with open('salaries.csv', 'r') as file:
+    reader = csv.reader(file)
+    next(reader)  # Skip header row
+    for row in reader:
+        emp_id, month, salary = row
+        if emp_id not in salaries:
+            salaries[emp_id] = []
+        salaries[emp_id].append(float(salary))
+
+# Calculate average salary for each department
+department_salaries = {}
+for emp_id, dept_id in employees.items():
+    if dept_id not in department_salaries:
+        department_salaries[dept_id] = []
+    if emp_id in salaries:
+        department_salaries[dept_id].extend(salaries[emp_id])
+
+# Print department name and average salary
+for dept_id, avg_salary in department_salaries.items():
+    dept_name = departments.get(dept_id, 'Unknown Department')
+    avg_salary = sum(avg_salary) / len(avg_salary)
+    print(f"Department: {dept_name}, Average Salary: {avg_salary:.2f}")
 
