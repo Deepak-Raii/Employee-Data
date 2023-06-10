@@ -15,7 +15,7 @@ def compute(n):
 
 ################################################################## ERRORS ##################################################################
 
-There are two issues in the given script...
+There was two issues in the given script...
 
 1. In the second condition (elif n < 20), the range in the for loop should start from 1 and go up to n - 9 instead of n - 10 because the loop iterates up to n - 10 inclusive.
 2. In the third condition (else), we can simplify the calculation by using the sum function with the range function to calculate the sum of all integers between 1 and lim.
