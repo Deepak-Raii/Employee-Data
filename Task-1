@@ -1,1 +1,4 @@
+Ques. :-  Fetch top 3 departments along with their name and average monthly salary.
 
+
+select d.NAME, avg(s.AMT) from myemployee e inner join departments d on e.ID = d.ID inner join salaries s on e.ID = s.EMP_ID group by d.NAME, s.AMT limit 3;
